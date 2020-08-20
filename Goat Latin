@@ -1,0 +1,16 @@
+class Solution:
+    def toGoatLatin(self, S: str) -> str:
+        li = S.split(' ')
+        last = 'a'
+        a=[]
+        for i in li:
+            if i[0] in 'a,e,i,o,u,A,E,I,O,U':
+                i = i + 'ma' + last
+                a.append(i)
+            else:
+                i = i[1:] + i[0] + 'ma' + last
+                a.append(i)
+            last = last + 'a'
+        B = ' '.join(a)
+        return B
+                
