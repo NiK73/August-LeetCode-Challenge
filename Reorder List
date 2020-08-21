@@ -1,0 +1,15 @@
+if head is None or head.next is None:
+            return
+        slow = fast = head
+        while fast and fast.next:
+            prev = slow
+            slow, fast = slow.next, fast.next.next
+        prev.next = None
+        prev, curr = None, slow
+        while curr:
+            temp, curr.next = curr.next, prev
+            prev, curr = curr, temp
+        h1, h2 = head, prev
+        while h2:
+            temp, h1.next = h1.next, h2
+            h1, h2 = h2, temp
