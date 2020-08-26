@@ -1,0 +1,17 @@
+class Solution:
+    def mincostTickets(self, days: List[int], costs: List[int]) -> int:
+        size =days[-1]
+        max_cost = max(costs)*size
+        dp=[0]+[max_cost]*size
+        ticket_price={1:costs[0],7:costs[1],30:costs[2]}
+        
+        for day in range(1,len(dp)):
+            if day not in days:
+                dp[day]=dp[day-1]
+                continue
+            for ticket in [1,7,30]:
+                if day>=ticket:
+                    dp[day]=min(dp[day],dp[day-ticket]+ticket_price[ticket])
+                else:
+                    dp[day]=min(dp[day],dp[0]+ticket_price[ticket])
+        return dp[-1]
