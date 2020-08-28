@@ -1,0 +1,9 @@
+class Solution:
+    def findRightInterval(self, intervals: List[List[int]]) -> List[int]:
+        searches = {}
+        for i, interval in enumerate(intervals): 
+            searches[interval[0]] = searches.get(interval[0], i)
+        for i in range(max(searches), 0, -1):
+            if i not in searches:
+                searches[i] = searches[i + 1]
+        return [searches.get(interval[1] ,-1) for interval in intervals ]
